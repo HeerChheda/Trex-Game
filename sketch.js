@@ -9,7 +9,7 @@ var gameState = PLAY;
 
 var cloudsGroup, obstaclesGroup;
 
-var end, reset, endImage, resetImage;
+var end, reset, endImage, resetImage, jumpSound;
 
 function preload () {
   trexRunning = loadAnimation("trex1.png", "trex3.png", "trex4.png");
@@ -26,7 +26,7 @@ function preload () {
   
   endImage = loadImage("gameOver.png");
   resetImage = loadImage("restart.png");
-  
+  jumpSound = loadSound("jump.mp3");
 }
 
 function setup() {
@@ -65,6 +65,7 @@ function draw() {
   if (gameState === PLAY) {
      if (keyDown ("space")&& trex.y >= 169) {
         trex.velocityY = -12;
+       jumpSound.play();
       }  
     trex.velocityY = trex.velocityY + 0.8;
     ground.velocityX = -6;
